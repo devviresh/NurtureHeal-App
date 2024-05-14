@@ -43,14 +43,42 @@ export default function RootLayout() {
   }
 
   return <RootLayoutNav />;
+  // return <LoginScreen />
+  // return <RegisterScreen />
+  // return <OtpScreen />
 }
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider
+      value={DefaultTheme}
+    // value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+    >
       <Stack>
+        <Stack.Screen name='auth/login' options={{ headerShown: false }} />
+        <Stack.Screen name='auth/register'
+          options={{ headerShown: false }}
+        // options={{
+        //   headerTitle: 'Create Account',
+        //   headerTitleStyle: { color: "#9C06AF", fontWeight: 'bold' },
+        //   headerStyle: {
+        //     backgroundColor: "#DCF9E5",
+        //   }
+        // }}
+        />
+        <Stack.Screen name='auth/verify-otp'
+          options={{ headerShown: false }}
+        // options={{
+        //   headerTitle: 'Almost There',
+        //   headerTitleStyle: { color: "#9C06AF", fontWeight: 'bold' },
+        //   headerStyle: {
+        //     backgroundColor: "#DCF9E5",
+        //   }
+        // }}
+        />
+
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
