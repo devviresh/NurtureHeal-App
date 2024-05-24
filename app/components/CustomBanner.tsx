@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import CustomIconButton from './CustomIconButton';
+import CustomIconButton from './buttons/CustomIconButton';
 import { Dimensions } from 'react-native';
 import { router } from 'expo-router';
 

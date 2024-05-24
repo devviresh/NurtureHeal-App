@@ -27,7 +27,10 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 24,
         alignItems: 'center',
-        marginTop: 20
+        // marginTop: 20,
+        maxWidth: 400,
+        alignSelf: "center",
+        width: "100%"
     },
     buttonText: {
         color: 'white',

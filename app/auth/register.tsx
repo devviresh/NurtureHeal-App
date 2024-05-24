@@ -1,41 +1,51 @@
-import { Image, StyleSheet, Text, View, Dimensions } from 'react-native'
+import { Image, StyleSheet, Text, View, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React from 'react'
 import CustomBanner from '../components/CustomBanner'
-import CustomInput from '../components/CustomInput'
-import CustomButton from '../components/CustomButton'
-import CustomTextButton from '../components/CustomTextButton'
+import CustomInput from '../components/input/CustomInput'
+import CustomButton from '../components/buttons/CustomButton'
+import CustomTextButton from '../components/buttons/CustomTextButton'
 import { router } from 'expo-router'
 
 const RegisterScreen = () => {
     return (
-        <View style={styles.page}>
-            {/* Logo Area */}
-            <View style={styles.header}>
-                <CustomBanner title="Create Account" subtitle='Create a new account' needHelp={false} />
-            </View>
+        <KeyboardAvoidingView
+            behavior="padding"
+            style={styles.page}
+        >
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1 }}
+                keyboardShouldPersistTaps="handled"
+                showsVerticalScrollIndicator={false}>
 
-            <View style={styles.body}>
-
-                {/* Form Area */}
-                <View>
-                    <CustomInput name='Enter your Full name' hint='Enter your name' />
-                    <CustomInput name='Email ID' hint='Enter your email id' />
-                    <CustomInput name='Date of birth' hint='DD/MM/Year' />
-                    <CustomInput name='Mobile No' hint='Enter your mobile no' />
-                    {/* Submit Button */}
-                    <CustomButton text='Create Account' onPress={() => { router.push('/auth/verify-otp') }} />
+                {/* Logo Area */}
+                <View style={styles.header}>
+                    <CustomBanner title="Create Account" subtitle='Create a new account' needHelp={false} />
                 </View>
 
+                <View style={styles.body}>
 
-                {/* Not a member */}
-                <View style={styles.alreadyMember}>
-                    <Text>Already have a account? </Text>
-                    <CustomTextButton text="Login" onPress={() => { router.push('/auth/login') }} />
+                    {/* Form Area */}
+                    <View style={{gap:20}}>
+                        <CustomInput name='Enter your Full name' hint='Enter your name' />
+                        <CustomInput name='Email ID' hint='Enter your email id' />
+                        <CustomInput name='Date of birth' hint='DD/MM/Year' />
+                        <CustomInput name='Mobile No' hint='Enter your mobile no' />
+                        {/* Submit Button */}
+                        <CustomButton text='Create Account' onPress={() => { router.push('/auth/verify-otp') }} />
+                    </View>
+
+
+                    {/* Not a member */}
+                    <View style={styles.alreadyMember}>
+                        <Text>Already have a account? </Text>
+                        <CustomTextButton text="Login" onPress={() => { router.push('/auth/login') }} />
+                    </View>
                 </View>
-            </View>
 
-            {/* <Link href="/register">About</Link> */}
-        </View>
+                {/* <Link href="/register">About</Link> */}
+
+            </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -45,14 +55,17 @@ const styles = StyleSheet.create({
     page: {
         // justifyContent:"center",
         // alignItems:"center"
+        // flex: 1,
     },
 
     header: {
+        position: 'absolute',
         width: 580,
         height: 580,
         top: -420,
-        borderBottomLeftRadius: 580,
-        borderBottomRightRadius: 580,
+        borderRadius: 580,
+        // borderBottomLeftRadius: 580,
+        // borderBottomRightRadius: 580,
         justifyContent: "flex-end",
         alignItems: "center",
         alignSelf: "center",
@@ -66,8 +79,8 @@ const styles = StyleSheet.create({
     },
 
     body: {
-        top: -430,
-        marginTop: 40,
+        // top: -430,
+        marginTop: 200,
         marginHorizontal: 20
     },
 
@@ -75,7 +88,6 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        marginTop: 20
+        marginVertical: 20
     }
-
 })

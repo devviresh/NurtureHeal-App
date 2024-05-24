@@ -1,52 +1,64 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, KeyboardAvoidingView } from 'react-native'
+import React, { useState } from 'react'
 
-import CustomInput from '../components/CustomInput';
-import CustomButton from '../components/CustomButton';
+import CustomInput from '../components/input/CustomInput';
+import CustomButton from '../components/buttons/CustomButton';
 import OrSeparator from '../components/OrSeparator';
-import SocialLoginButton from '../components/SocialLoginButton';
-import CustomTextButton from '../components/CustomTextButton';
+import SocialLoginButton from '../components/buttons/SocialLoginButton';
+import CustomTextButton from '../components/buttons/CustomTextButton';
 import { Link, router } from 'expo-router';
+import { ScrollView } from 'react-native';
+import { AppColors } from '@/constants/Colors';
 
 const LoginScreen = () => {
+    const [viaEmail, setViaEmail] = useState(true)
+
     return (
-        <View style={styles.page}>
-            {/* Logo Area */}
-            <View style={styles.header}>
-                <Image style={styles.logo} source={require("../../assets/images/logo.png")} />
-            </View>
-
-            <View style={styles.body}>
-                {/* Welcome Section */}
-                <View style={{ marginTop: 30, marginBottom: 10 }}>
-                    <Text style={styles.welcome}>Welcome!</Text>
-                    <Text style={styles.banner}>Login to your account</Text>
+        <KeyboardAvoidingView behavior="padding" style={styles.page}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}
+                keyboardShouldPersistTaps="handled"
+                showsVerticalScrollIndicator={false}>
+                {/* Logo Area */}
+                <View style={styles.header}>
+                    <Image style={styles.logo} source={require("../../assets/images/logo.png")} />
                 </View>
 
-                {/* Form Area */}
-                <View>
-                    <CustomInput name='Email or Mobile number' hint='Enter your mail or mobile number' />
-                    <CustomButton text='Continue' onPress={() => { router.push('/auth/verify-otp') }} />
+                <View style={styles.body}>
+                    {/* Welcome Section */}
+                    <View style={{ marginTop: 30, marginBottom: 10 }}>
+                        <Text style={styles.welcome}>Welcome!</Text>
+                        <Text style={styles.banner}>Login to your account</Text>
+                    </View>
+
+                    {/* Form Area */}
+                    <View style={{ gap: 20 }}>
+                        <CustomInput name='Email or Mobile number' hint='Enter your mail or mobile number' />
+                        <CustomButton text='Continue' onPress={() => {
+                            router.push('/home')
+                            // router.push('/auth/verify-otp')
+                        }} />
+                    </View>
+
+                    {/* Other Sign in Methods */}
+                    <OrSeparator />
+                    <View style={styles.SocialLoginContainer}>
+                        <SocialLoginButton icon={require("../../assets/images/google.png")} onPress={() => { }} />
+                        <SocialLoginButton icon={require("../../assets/images/fb.png")} onPress={() => { }} />
+                        <SocialLoginButton icon={require("../../assets/images/x.png")} onPress={() => { }} />
+                    </View>
+
+                    {/* Not a member */}
+                    <View style={styles.notMember}>
+                        <Text>Not a member? </Text>
+                        {/* <Link href='/auth/RegisterScreen'> */}
+                        <CustomTextButton text="Create Account" onPress={() => { router.push('/auth/register') }} />
+
+                    </View>
                 </View>
 
-                {/* Other Sign in Methods */}
-                <OrSeparator />
-                <View style={styles.SocialLoginContainer}>
-                    <SocialLoginButton icon={require("../../assets/images/google.png")} onPress={() => { }} />
-                    <SocialLoginButton icon={require("../../assets/images/fb.png")} onPress={() => { }} />
-                    <SocialLoginButton icon={require("../../assets/images/x.png")} onPress={() => { }} />
-                </View>
+            </ScrollView>
 
-                {/* Not a member */}
-                <View style={styles.notMember}>
-                    <Text>Not a member? </Text>
-                    {/* <Link href='/auth/RegisterScreen'> */}
-                    <CustomTextButton text="Create Account" onPress={() => { router.push('/auth/register') }} />
-
-                </View>
-            </View>
-
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -65,9 +77,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignSelf: "center",
-        backgroundColor: "#DCF9E5",
+        backgroundColor: AppColors.primary,
         paddingTop: 20,
-        shadowColor: "#000000",
+        shadowColor: AppColors.black,
         shadowOpacity: 0.25,
         shadowOffset: {
             width: 0, height: 4
@@ -86,10 +98,11 @@ const styles = StyleSheet.create({
     },
 
     welcome: {
-        fontWeight: "bold",
+        // fontWeight: "bold",
         fontSize: 24,
         color: "#9C06AF",
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: "Bold"
     },
 
     banner: {

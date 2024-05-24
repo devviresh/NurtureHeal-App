@@ -8,7 +8,7 @@ interface CustomInputProps {
 
 const CustomInput: React.FC<CustomInputProps> = ({ name, hint }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.fieldName}>{name}</Text>
       <TextInput
         style={styles.inputField}
@@ -23,14 +23,23 @@ const CustomInput: React.FC<CustomInputProps> = ({ name, hint }) => {
 export default CustomInput
 
 const styles = StyleSheet.create({
+  container: {
+    maxWidth: 400,
+    alignSelf: "center",
+    width: "100%",
+  },
   fieldName: {
     fontSize: 14,
     marginBottom: 5,
-    marginTop: 20
+    fontFamily:'LatoSemiBold',
+    color: 'rgba(0, 0, 0, 0.5)'
+    // marginTop: 20,
   },
   inputField: {
     backgroundColor: "rgba(234, 234, 234, 1)",
     borderRadius: 6,
-    padding: 8
+    padding: 10,
+    borderWidth: 0.5,
+    borderColor: 'rgba(0, 0, 0, 0.2)',
   }
 })

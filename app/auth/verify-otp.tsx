@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import CustomBanner from '../components/CustomBanner';
-import OTPField from '../components/CustomOTPField';
-import CustomButton from '../components/CustomButton';
+import OTPField from '../components/input/CustomOTPField';
+import CustomButton from '../components/buttons/CustomButton';
 
 
 const OtpScreen = () => {
@@ -23,7 +23,7 @@ const OtpScreen = () => {
     }, [timer]);
 
     return (
-        <View >
+        <View style={{ backgroundColor: "white", flex: 1 }}>
             <View style={styles.header}>
                 <CustomBanner title='Almost There' subtitle='Please enter the OTP sent on 9*********6' needHelp={true} />
             </View>
