@@ -21,6 +21,7 @@ const CartItem: React.FC<CartItemProps> = ({ title, price, sessions, rating, rev
             {/* Details */}
             <View style={styles.details}>
                 <Image style={styles.image} source={require("../../../assets/images/frame.png")} />
+                
                 {/* Info */}
                 <View style={styles.info}>
                     {/* main */}
@@ -54,11 +55,14 @@ const CartItem: React.FC<CartItemProps> = ({ title, price, sessions, rating, rev
                     </View>
                 </View>
             </View>
+
             {/* actions */}
             <View style={styles.actions}>
                 <CartItemButton text={'Remove'}
                     isDelete={true}
-                    onPress={() => { }} />
+                    onPress={() => { 
+                        //delete
+                    }} />
                 <CartItemButton text={'Book Now'}
                     isDelete={false}
                     onPress={() => {
